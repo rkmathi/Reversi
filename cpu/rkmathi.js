@@ -25,9 +25,6 @@ var _wannaGet = {
   "B": [ 2,  5, 16, 23, 40, 47, 58, 61],
   "C": [18, 21, 42, 45],
   "D": [10, 13, 17, 22, 41, 46, 50, 53],
-  // I don't wanna get
-  "Y": [ 1,  6,  8, 15, 49, 55, 57, 62],
-  "Z": [ 9, 14, 48, 54]
 };
 
 // --- interface -------------------------------------------
@@ -57,18 +54,26 @@ function logic(param, callback) {
     /// !!! I wanna get !!!
     var _fixPosFlag = false;
     var _fixPos = -1;
-    _wannaGet.A.forEach(function (i) {
-      if (hint[i] > 0) { _fixPosFlag = true; _fixPos = i; }
-    });
-    _wannaGet.B.forEach(function (i) {
-      if (hint[i] > 0) { _fixPosFlag = true; _fixPos = i; }
-    });
-    _wannaGet.C.forEach(function (i) {
-      if (hint[i] > 0) { _fixPosFlag = true; _fixPos = i; }
-    });
-    _wannaGet.D.forEach(function (i) {
-      if (hint[i] > 0) { _fixPosFlag = true; _fixPos = i; }
-    });
+    if (!_fixPosFlag) {
+      _wannaGet.A.forEach(function (i) {
+        if (hint[i] > 0) { _fixPosFlag = true; _fixPos = i; }
+      });
+    }
+    if (!_fixPosFlag) {
+      _wannaGet.B.forEach(function (i) {
+        if (hint[i] > 0) { _fixPosFlag = true; _fixPos = i; }
+      });
+    }
+    if (!_fixPosFlag) {
+      _wannaGet.C.forEach(function (i) {
+        if (hint[i] > 0) { _fixPosFlag = true; _fixPos = i; }
+      });
+    }
+    if (!_fixPosFlag) {
+      _wannaGet.D.forEach(function (i) {
+        if (hint[i] > 0) { _fixPosFlag = true; _fixPos = i; }
+      });
+    }
     /// !!! I wanna get !!!
 
     for (i=0, iz=candidate.length; i<iz; ++i) {
@@ -117,9 +122,6 @@ function logic(param, callback) {
     } else {
       pos = BaseLogic.getMaxValueIndex(weight);
     }
-
-    /// !!! I don't wanna get !!!
-    /// !!! I don't wanna get !!!
 
     var position = _fixPosFlag ? _fixPos : candidate[pos][0];
     callback(position);
